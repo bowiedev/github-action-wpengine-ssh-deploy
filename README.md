@@ -7,7 +7,7 @@ An action to deploy your repository to a **[WP Engine](https://wpengine.com)** s
 ```
 workflow "Deploy to WP Engine" {
   on = "push"
-  resolves = ["Git Push to Production"]
+  resolves = ["SSH deploy to WP Engine"]
 }
 
 action "Rsync WP to Production" {
