@@ -10,14 +10,14 @@ workflow "Deploy to WP Engine" {
   resolves = ["Git Push to Production"]
 }
 
-action "Git Push to Production" {
-  uses = "jovrtn/github-action-wpengine-git-deploy@master"
+action "Rsync WP to Production" {
+  uses = "bowiedev/github-action-wpengine-ssh-deploy@master"
   env = {
-    WPENGINE_ENVIRONMENT_NAME   = "my-cool-site-production"
+    WPE_ENV_NAME   = "mytestsite"
   }
   secrets = [
-    "WPENGINE_SSH_KEY_PRIVATE",
-    "WPENGINE_SSH_KEY_PUBLIC"
+    "WPENGINE_SSHG_KEY_PRIVATE",
+    "WPENGINE_SSHG_KEY_PUBLIC"
   ]
 }
 ```
@@ -28,16 +28,15 @@ action "Git Push to Production" {
 
 | Name | Type | Usage |
 |-|-|-|
-| `WPENGINE_ENVIRONMENT_NAME` | Environment Variable | The name of the WP Engine environment you want to deploy to. |
-| `WPENGINE_SSH_KEY_PRIVATE` | Secret | Private SSH key of your WP Engine git deploy user. See below for SSH key usage. |
-|  `WPENGINE_SSH_KEY_PUBLIC` | Secret | Public SSH key of your WP Engine git deploy user. See below for SSH key usage. |
+| `WPE_ENV_NAME` | Environment Variable | The name of the WP Engine environment you want to deploy to. |
+| `WPENGINE_SSHG_KEY_PRIVATE` | Secret | Private SSH Key for the SSH Gateway and deployment. See below for SSH key usage. |
+|  `WPENGINE_SSHG_KEY_PUBLIC` | Secret | Public SSH Key for the SSH Gateway and deployment. See below for SSH key usage. |
 
 ### Optional
 
 | Name | Type  | Usage |
 |-|-|-|
-| `WPENGINE_ENVIRONMENT` | Environment Variable  | Defaults to `production`. You shouldn't need to change this, but if you're using WP Engine's legacy staging, you can override the default and set to `staging` if needed. |
-| `LOCAL_BRANCH` | Environment Variable  | Set which branch in your repository you'd like to push to WP Engine. Defaults to `master`. |
+| `WPE_ENV_NAME` | Environment Variable  | This should allow you to use the name of any install in your account you would like to deploy to. |
 
 ### Further reading
 
@@ -47,6 +46,7 @@ action "Git Push to Production" {
 ## Setting up your SSH keys
 
 1. [Generate a new SSH key pair](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) as a special deploy key. The simplest method is to generate a key pair with a blank passphrase, which creates an unencrypted private key.
-2. Store your public and private keys in your GitHub repository as new 'Secrets' (under your repository settings), using the names `WPENGINE_SSH_KEY_PRIVATE` and `WPENGINE_SSH_KEY_PUBLIC` respectively. In theory, this replaces the need for encryption on the key itself, since GitHub repository secrets are encrypted by default.
-3. Add the public key to your target WP Engine environment.
-4. Per the [WP Engine documentation](https://wpengine.com/git/), it takes about 30-45 minutes for the new SSH key to become active.
+
+2. Store your public and private keys in the GitHub repository if your website as new 'Secrets' (under your repository settings), using the names `WPENGINE_SSHG_KEY_PRIVATE` and `WPENGINE_SSHG_KEY_PUBLIC` respectively. These SSH Key Names are specific to the action config. 
+
+3. Add the public key to your target WP Engine SSH Key settings - https://wpengine.com/support/ssh-keys-for-shell-access/ 
