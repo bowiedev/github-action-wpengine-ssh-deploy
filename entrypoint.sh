@@ -28,7 +28,5 @@ chmod 600 "$WPENGINE_SSHG_KEY_PRIVATE_PATH"
 chmod 644 "$WPENGINE_SSHG_KEY_PUBLIC_PATH"
 
 
- 
 
-
-rsync -v --rsh="ssh -p 22 -i $HOME/.ssh/github_action" -a --exclude=".*" . "$WPE_ENV_NAME"@"$WPENGINE_SSH_HOST":sites/"$WPE_ENV_NAME"/
+rsync -Pav -e ="ssh -i $HOME/.ssh/github_action" -a --exclude=".*" . "$WPE_ENV_NAME"@"$WPENGINE_SSH_HOST":sites/"$WPE_ENV_NAME"/
