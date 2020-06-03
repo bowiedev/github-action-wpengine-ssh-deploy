@@ -10,6 +10,7 @@ SSH_PATH="$HOME/.ssh"
 KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts"
 WPENGINE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
 WPENGINE_SSHG_KEY_PUBLIC_PATH="$SSH_PATH/github_action.pub"
+WPE_DESTINATION="$WPE_ENV_NAME@$WPENGINE_SSH_HOST:sites/$WPE_ENV_NAME/"
 #setting up our connection from GH action machine and
 #making keys that will transfer from the site repo secrets to the action machine.
 WPENGINE_SSH_HOST="$WPE_ENV_NAME.ssh.wpengine.net"
@@ -28,5 +29,6 @@ chmod 600 "$WPENGINE_SSHG_KEY_PRIVATE_PATH"
 chmod 644 "$WPENGINE_SSHG_KEY_PUBLIC_PATH"
 
 ssh-keygen -E md5 -lf "$WPENGINE_SSHG_KEY_PRIVATE_PATH"
+echo $WPE_DESTINATION 
 
-rsync -Pav -e "ssh -i $WPENGINE_SSHG_KEY_PRIVATE_PATH" -a --exclude=".*" . "$WPE_ENV_NAME"@"$WPENGINE_SSH_HOST":sites/"$WPE_ENV_NAME"/
+#rsync -Pav -e "ssh -i $WPENGINE_SSHG_KEY_PRIVATE_PATH" -a --exclude=".*" . 
