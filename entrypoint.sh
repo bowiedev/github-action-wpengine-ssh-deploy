@@ -29,4 +29,4 @@ chmod 644 "$WPENGINE_SSHG_KEY_PUBLIC_PATH"
 
 ssh-keygen -E md5 -lf "$WPENGINE_SSHG_KEY_PRIVATE_PATH"
 
-rsync -Pav -e "ssh -i $HOME/.ssh/github_action" -a --exclude=".*" . "$WPE_ENV_NAME"@"$WPENGINE_SSH_HOST":sites/"$WPE_ENV_NAME"/
+rsync -Pav -e "ssh -i $WPENGINE_SSHG_KEY_PRIVATE_PATH" -a --exclude=".*" . "$WPE_ENV_NAME"@"$WPENGINE_SSH_HOST":sites/"$WPE_ENV_NAME"/
