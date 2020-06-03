@@ -3,12 +3,12 @@
 set -e
 
 : ${WPE_ENV_NAME?Required environment name variable not set.}
-#: ${WPENGINE_SSHG_KEY_PRIVATE?Required secret not set.}
-: ${WPENGINE_SSHG_KEY_PUBLIC?Required secret not set.}
+: ${WPENGINE_SSHG_KEY_PRIVATE?Required secret not set.}
+#: ${WPENGINE_SSHG_KEY_PUBLIC?Required secret not set.}
 
 SSH_PATH="$HOME/.ssh"
 KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts"
-WPENGINE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/wpengine_key"
+WPENGINE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
 #WPENGINE_SSHG_KEY_PUBLIC_PATH="$SSH_PATH/wpengine_key.pub"
 #setting up our connection from GH action machine and
 #making keys that will transfer from the site repo to the action machine.
