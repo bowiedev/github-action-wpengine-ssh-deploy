@@ -7,6 +7,6 @@ LABEL "com.github.actions.color"="blue"
 
 LABEL "repository"="http://github.com/boweidev/github-action-wpengine-ssh-deploy"
 LABEL "maintainer"="Alex Zuniga <alex.zuniga@wpengine.com>"
-RUN apt-get update && apt-get install -y openssh-server
+RUN apt-get update && apt-get install -y openssh-server rsync
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
