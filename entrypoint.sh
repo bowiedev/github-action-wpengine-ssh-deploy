@@ -29,6 +29,6 @@ chmod 600 "$WPENGINE_SSHG_KEY_PRIVATE_PATH"
 chmod 644 "$WPENGINE_SSHG_KEY_PUBLIC_PATH"
 
 ssh-keygen -E md5 -lf "$WPENGINE_SSHG_KEY_PRIVATE_PATH"
-echo $WPE_DESTINATION 
+echo "$WPE_DESTINATION" 
 
 #rsync -Pav -e "ssh -i $WPENGINE_SSHG_KEY_PRIVATE_PATH" -a --exclude=".*" . 
