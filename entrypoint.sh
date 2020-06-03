@@ -27,4 +27,4 @@ chmod 644 "$KNOWN_HOSTS_PATH"
 chmod 600 "$WPENGINE_SSHG_KEY_PRIVATE_PATH"
 chmod 644 "$WPENGINE_SSHG_KEY_PUBLIC_PATH"
 
-#rsync -v --rsh='ssh -p 22' -a --exclude=".*" . $WPE_ENV_NAME@$WPENGINE_SSH_HOST:sites/$WPE_ENV_NAME/
+rsync -v --rsh='ssh -p 22' -a --exclude=".*" . "$WPE_ENV_NAME"@"$WPENGINE_SSH_HOST":sites/"$WPE_ENV_NAME"/
