@@ -12,6 +12,8 @@ WPENGINE_SSHG_KEY_PRIVATE_PATH="$SSH_PATH/github_action"
 WPENGINE_SSHG_KEY_PUBLIC_PATH="$SSH_PATH/github_action.pub"
 WPENGINE_SSH_HOST="$WPE_ENV_NAME.ssh.wpengine.net"
 WPE_DESTINATION="$WPE_ENV_NAME"@"$WPENGINE_SSH_HOST":sites/"$WPE_ENV_NAME"
+PROJECT_PATH=""
+
 #setting up our connection from GH action machine and
 #making keys that will transfer from the site repo secrets to the action machine.
 
@@ -23,6 +25,7 @@ ssh-keyscan -t rsa "$WPENGINE_SSH_HOST" >> "$KNOWN_HOSTS_PATH"
 
 echo "$WPENGINE_SSHG_KEY_PRIVATE" > "$WPENGINE_SSHG_KEY_PRIVATE_PATH"
 echo "$WPENGINE_SSHG_KEY_PUBLIC" > "$WPENGINE_SSHG_KEY_PUBLIC_PATH"
+
 
 chmod 700 "$SSH_PATH"
 chmod 644 "$KNOWN_HOSTS_PATH"
@@ -38,5 +41,9 @@ echo WPENGINE_SSH_HOST: "$WPENGINE_SSH_HOST"
 echo WPE_DESTINATION: "$WPE_DESTINATION"
 echo "$WPENGINE_SSHG_KEY_PRIVATE_PATH"
 ls -l "$WPENGINE_SSHG_KEY_PRIVATE_PATH"
+#ensuring wp files are in current path to rsync
+echo pwd > "$PROJECT_PATH"
+ls "$PROJECT_PATH"
+
 
 rsync --rsh="ssh -v -p 22 -i /github/home/.ssh/github_action -o StrictHostKeyChecking=no" -a --exclude 'node_modules' --exclude=".*" . selive@selive.ssh.wpengine.net:sites/selive/
