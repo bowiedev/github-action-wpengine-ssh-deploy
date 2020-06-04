@@ -5,21 +5,24 @@ An action to deploy your repository to a **[WP Engine](https://wpengine.com)** s
 ## Example GitHub Action workflow
 
 ```
-workflow "Deploy to WP Engine" {
-  on = "push"
-  resolves = ["SSH deploy to WP Engine"]
-}
+name: Deploy to WP Engine
+  
+on: [push]
 
-action "Rsync WP to Production" {
-  uses = "bowiedev/github-action-wpengine-ssh-deploy@master"
-  env = {
-    WPE_ENV_NAME   = "mytestsite"
-  }
-  secrets = [
-    "WPENGINE_SSHG_KEY_PRIVATE",
-    "WPENGINE_SSHG_KEY_PUBLIC"
-  ]
-}
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+        
+    steps: 
+    - uses: actions/checkout@v2
+    - name: SSH Deploy to WP Engine
+      uses: bowiedev/github-action-wpengine-ssh-deploy@master 
+      env: 
+          WPE_ENV_NAME: <YOUR INSTALL NAME>
+          WPENGINE_SSHG_KEY_PUBLIC: ${{ secrets.WPENGINE_SSH_KEY_PUBLIC }}
+          WPENGINE_SSHG_KEY_PRIVATE: ${{ secrets.WPENGINE_SSH_KEY_PRIVATE }}
+
 ```
 
 ## Environment Variables & Secrets
