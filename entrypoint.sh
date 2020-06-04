@@ -38,4 +38,4 @@ echo WPE_DESTINATION: "$WPE_DESTINATION"
 echo "$WPENGINE_SSHG_KEY_PRIVATE_PATH"
 ls -l "$WPENGINE_SSHG_KEY_PRIVATE_PATH"
 
-rsync --rsh='ssh -p 22 -i $WPENGINE_SSHG_KEY_PRIVATE_PATH -o IdentitiesOnly=yes' -a --exclude 'node_modules' --exclude=".*" . selive@selive.ssh.wpengine.net:sites/selive/
+rsync --rsh='ssh -p 22 -i "$WPENGINE_SSHG_KEY_PRIVATE_PATH" -o IdentitiesOnly=yes' -a --exclude 'node_modules' --exclude=".*" . selive@selive.ssh.wpengine.net:sites/selive/
