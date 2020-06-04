@@ -42,8 +42,7 @@ echo WPE_DESTINATION: "$WPE_DESTINATION"
 echo "$WPENGINE_SSHG_KEY_PRIVATE_PATH"
 ls -l "$WPENGINE_SSHG_KEY_PRIVATE_PATH"
 #ensuring wp files are in current path to rsync
-echo pwd > "$PROJECT_PATH"
-ls "$PROJECT_PATH"
 
 
-rsync --rsh="ssh -v -p 22 -i /github/home/.ssh/github_action -o StrictHostKeyChecking=no" -a --exclude 'node_modules' --exclude=".*" . selive@selive.ssh.wpengine.net:sites/selive/
+
+rsync --rsh="ssh -v -p 22 -i /github/home/.ssh/github_action -o StrictHostKeyChecking=no" -a --out-format="%n" --exclude 'node_modules' --exclude=".*" . selive@selive.ssh.wpengine.net:sites/selive/
