@@ -30,6 +30,7 @@ chmod 600 "$WPENGINE_SSHG_KEY_PRIVATE_PATH"
 chmod 644 "$WPENGINE_SSHG_KEY_PUBLIC_PATH"
 
 #dumping vars
+echo "$WPE_ENV_NAME"  > test.txt
 
 ssh-keygen -E md5 -lf "$WPENGINE_SSHG_KEY_PRIVATE_PATH"
 echo WPE_ENV_NAME: "$WPE_ENV_NAME"
