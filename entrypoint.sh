@@ -32,6 +32,6 @@ ssh-keygen -E md5 -lf "$WPENGINE_SSHG_KEY_PRIVATE_PATH"
  
 echo WPE_ENV_NAME: "$WPE_ENV_NAME"
 echo WPENGINE_SSH_HOST: "$WPENGINE_SSH_HOST"
-echo "$WPE_ENV_NAME" . @ . "$WPENGINE_SSH_HOST":sites/"$WPE_ENV_NAME"/
+echo "$WPE_ENV_NAME"@"$WPENGINE_SSH_HOST":sites/"$WPE_ENV_NAME"/
 
 #rsync -Pav -e "ssh -i $WPENGINE_SSHG_KEY_PRIVATE_PATH" -a --exclude=".*" . "$WPE_ENV_NAME"@"$WPENGINE_SSH_HOST":sites/"$WPE_ENV_NAME"/
