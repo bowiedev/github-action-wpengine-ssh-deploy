@@ -43,12 +43,18 @@ jobs:
 * [Defining environment variables in GitHub Actions](https://developer.github.com/actions/creating-github-actions/accessing-the-runtime-environment/#environment-variables)
 * [Storing secrets in GitHub repositories](https://developer.github.com/actions/managing-workflows/storing-secrets/)
 
-## Setting up your SSH keys
+## Setting up your SSH keys for repo
 
-1. [Generate a new SSH key pair](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) as a special deploy key between Github and WP Engine. The simplest method is to generate a key pair with a blank passphrase, which creates an unencrypted private key. 
+1. [Generate a new SSH key pair](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) as a special deploy key between your Github Repo and WP Engine. The simplest method is to generate a key pair with a blank passphrase, which creates an unencrypted private key. 
 
-2. Store your public and private keys in the GitHub repository if your website as new 'Secrets' (under your repository settings), using the names `PRIVATE_KEY_NAME` and `PUBLIC_KEY_NAME` respectively with the name in your specfic files.  
+2. Store your public and private keys in the GitHub repository if your website as new 'Secrets' (under your repository settings) using the names `PRIVATE_KEY_NAME` and `PUBLIC_KEY_NAME` respectively with the name in your specfic files. These can be customized, just remember to change the var in the yml file to call them correctly. 
 
 3. Add the .pub SSH key to your WP Engine SSH Gateway configuration. https://wpengine.com/support/ssh-gateway/#addsshkey
 
-## Deploy 
+## Add Workflow to your Repo
+
+1. Navigate to https://github.com/YOUR_REPO
+2. Actions Tab 
+3. Select "Skip this and set up a workflow yourself ->"
+4. Copy and Paste the above sample into the main.yml (replacing the desired install name)
+5. Commit the yml file to your repo
