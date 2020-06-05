@@ -7,7 +7,9 @@ An action to deploy your repository to a **[WP Engine](https://wpengine.com)** s
 ```
 name: Deploy to WP Engine
   
-on: [push]
+push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -19,9 +21,9 @@ jobs:
     - name: SSH Deploy to WP Engine
       uses: bowiedev/github-action-wpengine-ssh-deploy@master 
       env: 
-          WPE_ENV_NAME: <YOUR INSTALL NAME>
-          WPENGINE_SSHG_KEY_PUBLIC: ${{ secrets.PUBLIC_KEY_NAME }}
-          WPENGINE_SSHG_KEY_PRIVATE: ${{ secrets.PRIVATE_KEY_NAME }}
+          WPE_ENV_NAME: <YOUR INSTALL NAME> #replace with your install name
+          WPENGINE_SSHG_KEY_PUBLIC: ${{ secrets.PUBLIC_KEY_NAME }} #replace with name of your public key
+          WPENGINE_SSHG_KEY_PRIVATE: ${{ secrets.PRIVATE_KEY_NAME }} #replace with name of your public key
 
 ```
 
@@ -35,11 +37,6 @@ jobs:
 | `WPENGINE_SSHG_KEY_PRIVATE` | Secret | Private SSH Key for the SSH Gateway and deployment. See below for SSH key usage. |
 |  `WPENGINE_SSHG_KEY_PUBLIC` | Secret | Public SSH Key for the SSH Gateway and deployment. See below for SSH key usage. |
 
-### Optional
-
-| Name | Type  | Usage |
-|-|-|-|
-| `WPE_ENV_NAME` | Environment Variable  | This should allow you to use the name of any install in your account you would like to deploy to. |
 
 ### Further reading
 
