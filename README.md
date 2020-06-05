@@ -21,9 +21,9 @@ jobs:
     - name: SSH Deploy to WP Engine
       uses: bowiedev/github-action-wpengine-ssh-deploy@master 
       env: 
-          WPE_ENV_NAME: <YOUR INSTALL NAME> #replace with your install name
-          WPENGINE_SSHG_KEY_PUBLIC: ${{ secrets.PUBLIC_KEY_NAME }} #replace with name of your public key
-          WPENGINE_SSHG_KEY_PRIVATE: ${{ secrets.PRIVATE_KEY_NAME }} #replace with name of your public key
+          WPE_ENV_NAME: <YOUR INSTALL NAME> 
+          WPENGINE_SSHG_KEY_PUBLIC: ${{ secrets.PUBLIC_KEY_NAME }} 
+          WPENGINE_SSHG_KEY_PRIVATE: ${{ secrets.PRIVATE_KEY_NAME }} 
 
 ```
 
@@ -33,7 +33,7 @@ jobs:
 
 | Name | Type | Usage |
 |-|-|-|
-| `WPE_ENV_NAME` | Environment Variable | The name of the WP Engine environment you want to deploy to. |
+| `WPE_ENV_NAME` | Environment Variable | Insert the name of the WP Engine environment you want to deploy to. |
 | `WPENGINE_SSHG_KEY_PRIVATE` | Secret | Private SSH Key for the SSH Gateway and deployment. See below for SSH key usage. |
 |  `WPENGINE_SSHG_KEY_PUBLIC` | Secret | Public SSH Key for the SSH Gateway and deployment. See below for SSH key usage. |
 
@@ -45,11 +45,10 @@ jobs:
 
 ## Setting up your SSH keys
 
-1. [Generate a new SSH key pair](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) as a special deploy key. The simplest method is to generate a key pair with a blank passphrase, which creates an unencrypted private key. 
+1. [Generate a new SSH key pair](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) as a special deploy key between Github and WP Engine. The simplest method is to generate a key pair with a blank passphrase, which creates an unencrypted private key. 
 
 2. Store your public and private keys in the GitHub repository if your website as new 'Secrets' (under your repository settings), using the names `PRIVATE_KEY_NAME` and `PUBLIC_KEY_NAME` respectively with the name in your specfic files.  
 
-2. Add these same SSH Keyes to youw WP Engine SSH Gateway configuration. https://wpengine.com/support/ssh-gateway/#addsshkey
+3. Add the .pub SSH key to your WP Engine SSH Gateway configuration. https://wpengine.com/support/ssh-gateway/#addsshkey
 
-
-3. Add the public key to your target WP Engine SSH Key settings - https://wpengine.com/support/ssh-keys-for-shell-access/ 
+## Deploy 
