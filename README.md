@@ -4,6 +4,10 @@ An action to deploy your repository to a **[WP Engine](https://wpengine.com)** s
 
 ## Example GitHub Action workflow
 
+1. Create a .github/workflows/main.yml file in your GitHub repo, if one doesn't exist already.
+
+2. Add the following to the `main.yml` file, replacing <YOUR INSTALL NAME> and the public and private key var names if they were anything other than what is below. 
+  
 ```
 name: Deploy to WP Engine
   
