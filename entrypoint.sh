@@ -20,7 +20,7 @@ WPE_DESTINATION="$WPE_ENV_NAME"@"$WPENGINE_SSH_HOST":sites/"$WPE_ENV_NAME"
 mkdir "$SSH_PATH"
 ssh-keyscan -t rsa "$WPENGINE_SSH_HOST" >> "$KNOWN_HOSTS_PATH"
 
-#Copy Secret Keys to container 
+#Copy Secret Keys to container
 echo "$WPENGINE_SSHG_KEY_PRIVATE" > "$WPENGINE_SSHG_KEY_PRIVATE_PATH"
 echo "$WPENGINE_SSHG_KEY_PUBLIC" > "$WPENGINE_SSHG_KEY_PUBLIC_PATH"
 
