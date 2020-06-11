@@ -4,10 +4,12 @@ An action to deploy your repository to a **[WP Engine](https://wpengine.com)** s
 
 ## Example GitHub Action workflow
 
-1. Create a .github/workflows/main.yml file in your GitHub repo, if one doesn't exist already.
+1. Create a `.github/workflows/main.yml` file in your GitHub repo, if one doesn't exist already.
 
-2. Add the following to the `main.yml` file, replacing <YOUR INSTALL NAME> and the public and private key var names if they were anything other than what is below. 
-  
+2. Add the following to the `main.yml` file, replacing <YOUR INSTALL NAME> and the public and private key var names if they were anything other than what is below. Consult "Furthur Reading" on how to setup keys in repo Secrets. 
+
+3. Git push your site repo. 
+
 ```
 name: Deploy to WP Engine
   
@@ -55,10 +57,6 @@ jobs:
 
 3. Add the .pub SSH key to your WP Engine SSH Gateway configuration. https://wpengine.com/support/ssh-gateway/#addsshkey
 
-## Add Workflow to your Repo
+## What This Does
 
-1. Navigate to https://github.com/YOUR_REPO
-2. Actions Tab 
-3. Select "Skip this and set up a workflow yourself ->"
-4. Copy and Paste the above sample into the main.yml (replacing the desired install name)
-5. Commit the yml file to your repo
+This will deploy your code via rsync over WP Engine's SSH Gateway from the root WordPress directory. 
