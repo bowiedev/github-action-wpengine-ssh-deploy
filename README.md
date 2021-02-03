@@ -12,10 +12,11 @@ An action to deploy your repository to a **[WP Engine](https://wpengine.com)** s
 
 ```
 name: Deploy to WP Engine
-  
-push:
+
+on:  
+  push:
     branches:
-      - master
+        - master
 
 jobs:
   build:
