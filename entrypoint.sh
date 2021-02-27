@@ -3,7 +3,7 @@
 set -e
 
 : ${WPE_ENV_NAME?Required environment name variable not set.}
-: ${DIR_PATH?Optional theme or plugin directory desired.}
+: ${TPO_PATH?Optional theme or plugin directory desired.}
 : ${WPENGINE_SSHG_KEY_PRIVATE?Required secret not set.}
 : ${WPENGINE_SSHG_KEY_PUBLIC?Required secret not set.}
 
