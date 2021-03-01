@@ -15,7 +15,11 @@ WPENGINE_SSHG_KEY_PUBLIC_PATH="$SSH_PATH/github_action.pub"
 
 #Deploy Vars
 WPENGINE_SSH_HOST="$WPE_ENV_NAME.ssh.wpengine.net"
-DIR_PATH="$TPO_PATH"
+if [ -n "$TPO_PATH" ]; then 
+    DIR_PATH="$TPO_PATH"
+else 
+    DIR_PATH=""
+
 WPE_DESTINATION="$WPE_ENV_NAME"@"$WPENGINE_SSH_HOST":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 
 # Setup our SSH Connection & use keys
