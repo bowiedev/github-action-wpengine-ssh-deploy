@@ -29,9 +29,12 @@ jobs:
       uses: bowiedev/github-action-wpengine-ssh-deploy@master 
       env: 
           WPE_ENV_NAME: yoursitename 
+          WPE_SSHG_KEY_PUBLIC: ${{ secrets.PUBLIC_KEY_NAME }} 
+          WPE_SSHG_KEY_PRIVATE: ${{ secrets.PRIVATE_KEY_NAME }} 
+          TPO_SRC_PATH: ""
           TPO_PATH: ""
-          WPENGINE_SSHG_KEY_PUBLIC: ${{ secrets.PUBLIC_KEY_NAME }} 
-          WPENGINE_SSHG_KEY_PRIVATE: ${{ secrets.PRIVATE_KEY_NAME }} 
+
+          
 
 ```
 
@@ -49,7 +52,9 @@ jobs:
 
 | Name | Type | Usage |
 |-|-|-|
-| `TPO_PATH` | Optional path to specify a theme, plugin, or other directory you want to deploy to. Ex. `"wp-content/themes/genesis-child/"` . Note the ending slash. |
+| `TPO_SRC_PATH` | Optional path to specify a theme, plugin, or other directory source to deploy from. Ex. `"wp-content/themes/genesis-child/"` . Defaults to "." Dir. |
+| `TPO_PATH` | Optional path to specify a theme, plugin, or other directory you want to deploy to. Ex. `"wp-content/themes/genesis-child/"` . Note the ending slash.  |
+
 
 Note: If you do not use the `TPO_PATH` , simply leave `""` as is. 
 

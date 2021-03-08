@@ -18,6 +18,13 @@ if [ -n "$TPO_PATH" ]; then
     DIR_PATH="$TPO_PATH"
 else 
     DIR_PATH=""
+fi
+
+if [ -n "$TPO_SRC_PATH" ]; then
+    SRC_PATH="$TPO_SRC_PATH"
+else
+    SRC_PATH="."
+fi
 
 WPE_DESTINATION="$WPE_ENV_NAME"@"$WPE_SSH_HOST":sites/"$WPE_ENV_NAME"/"$DIR_PATH"
 
@@ -36,5 +43,5 @@ chmod 600 "$WPE_SSHG_KEY_PRIVATE_PATH"
 chmod 644 "$WPE_SSHG_KEY_PUBLIC_PATH"
 
 # Deploy via SSH
-rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no" -a --out-format="%n"  --exclude=".*" . "$WPE_DESTINATION"
+rsync --rsh="ssh -v -p 22 -i ${WPE_SSHG_KEY_PRIVATE_PATH} -o StrictHostKeyChecking=no" -a --out-format="%n"  --exclude=".*" $SRC_PATH "$WPE_DESTINATION"
 fi
